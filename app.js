@@ -1,0 +1,20 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = 3000;
+
+app.use(bodyParser.json());
+
+app.post('/webhook/orders/create', (req, res) => {
+    console.log('Headers:', req.headers);
+    console.log('Body:', req.body);
+    
+    const orderData = req.body;
+    console.log('Order data received', orderData);
+    res.status(200).send('Webhook received');
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running at port ${PORT}`);
+});
